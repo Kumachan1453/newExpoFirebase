@@ -14,12 +14,25 @@ export default function App() {
     appId: "1:772345587846:web:211794f811cadbe05bc907",
   };
 
-  const initial = initializeApp(firebaseConfig);
+  const {
+    initializeApp,
+    applicationDefault,
+    cert,
+  } = require("firebase-admin/app");
+  const {
+    getFirestore,
+    Timestamp,
+    FieldValue,
+  } = require("firebase-admin/firestore");
+  // const initial = initializeApp(firebaseConfig);
+  initializeApp();
   const db = getFirestore();
 
   const snapshot = db.collection("users").get();
-  // const snapshot = db;　だとうまくいく。
+  // const snapshot = db;
+  // 「const snapshot = db;」だとうまくいく。
   console.log("snapshot", snapshot);
+
   // snapshot.forEach((doc) => {
   //   console.log(doc.id, "=>", doc.data());
   // });
